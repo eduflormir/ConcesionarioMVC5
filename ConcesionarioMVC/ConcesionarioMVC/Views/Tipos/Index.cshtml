@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ConcesionarioMVC.Models.Tipos>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+<div id="listado">
+    @Html.Partial("_listadoTipos", Model)
+</div>

@@ -1,7 +1,9 @@
-﻿@model IEnumerable<ConcesionarioMVC.Models.Vehiculos>
+﻿@using ConcesionarioMVC.Models
+@model IEnumerable<ConcesionarioMVC.Models.Vehiculos>
 
 @{
     ViewBag.Title = "ListadoVehiculos";
+    var tipos = ViewBag.Tipos as IEnumerable<Tipos>;
 }
 
 
@@ -29,6 +31,7 @@
             </div>
             <div class="modal-body">
                 @*Pegar formulario*@
+                
                 <input type="text" id="txtIdTipo" placeholder="Id Tipo" />
                 <input type="text" id="txtMatricula" placeholder="Matricula" />
                 <input type="text" id="txtMarca" placeholder="Marca" />
@@ -64,7 +67,7 @@
                 headers: { "Content-Type": "application/json" },
                 dataType: "json",
                 success: function(res) {
-                    if (res.matricula > 0) {
+                    if (res.matricula!=null) {
                         $("#dlgAdd").modal('hide'); // para ocultar el dialogo Modal
                         $("#txtBusqueda").val("");
                         listado();

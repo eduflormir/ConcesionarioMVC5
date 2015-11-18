@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,22 +14,26 @@ namespace ConcesionarioMVC.Controllers
 
 
 
-        public ActionResult Buscar(String matricula, String marca)
+        public ActionResult Buscar(String matricula, String marca, int idTipo)
         {
-            var data = db.Vehiculos.Where(o => o.matricula == matricula||o.marca==marca).OrderBy(o=>o.marca);
+            var data = db.Vehiculos.Where(o => o.matricula == matricula || o.marca == marca || o.idTipo==idTipo).OrderBy(o => o.marca);
+            
             return PartialView("_listadoVehiculos", data);
         }
 
         public ActionResult ListadoVehiculos(int? id)
         {
+            ViewBag.Tipos = db.Tipos.ToList();
             if (id != null)
             {
                 var data = db.Vehiculos.Where(o => o.idTipo == id);
                 return View(data);
             }
-            
-            return View("Index");
-            
+            // nameof para obtener el nombre de las acciones
+
+            return RedirectToAction(nameof(Controllers.TiposController.ListadoVehiculos),
+                nameof(Controllers.TiposController).Replace("Controller",""));
+
 
         }
 
@@ -43,6 +48,7 @@ namespace ConcesionarioMVC.Controllers
         [HttpPost]
         public ActionResult Alta(Vehiculos model)
         {
+
             db.Vehiculos.Add(model);
             db.SaveChanges();
             return Json(model); // devuelve un objeto Json

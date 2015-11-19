@@ -38,15 +38,8 @@ namespace ConcesionarioMVC.Controllers
 
             return PartialView("_listadoVehiculos", data.ToList());
         }
-
-        public ActionResult Alta()
-        {
-            return View(new Vehiculos());
-        }
-
+        
         [HttpPost]
-        [ValidateAntiForgeryToken]
-
         public ActionResult Alta(Vehiculos model)
         {
             db.Vehiculos.Add(model);

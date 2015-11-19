@@ -68,7 +68,16 @@
 
         }
 
+        function limpiarFormulario() {
+            $("#txtIdTipo").val("");
+            $("#txtMatricula").val("");
+            $("#txtMarca").val("");
+            $("#txtModelo").val("");
+            $("#txtCoste").val("");
+        }
+
         function alta() {
+            
             var obj = {
                 idTipo: tipo, // este valor lo recibo con ViewBag
                 matricula: $("#txtMatricula").val(),
@@ -78,20 +87,17 @@
             };
 
 
-            var objTxt = JSON.stringify(obj); // se convierte a texto
+            var objTxt = JSON.stringify(obj);
             var url = "@Url.Action("Alta")";
-
             $.ajax({
                 url: url,
                 data: objTxt,
                 dataType: "json",
                 headers: { "Content-Type": "application/json" },
-                type: "POST", // puede ser GET
+                type: "POST",
                 success: function(res) {
-                    
-                    $("#dlgAlta").modal('hide'); // para ocultar el dialogo Modal
-
-                    if (res.idVehiculo != 0) {
+                    $("#dlgAlta").modal("hide");
+                    if (res.matricula != null) {
                         $("#txtBus").val("");
                         buscar();
                     } else {
@@ -99,22 +105,16 @@
                     }
                 }
             });
-            
+
         }
 
-        function limpiarFormulario() {
-            $("#txtIdTipo").val("");
-            $("#txtMatricula").val("");
-            $("#txtMarca").val("");
-            $("#txtModelo").val("");
-            $("#txtCoste").val("");
-        }
+
 
 
         $("#btnBus").click(buscar);
 
         $("#btnGuardar").click(alta);
-        
+
         $("#btnAdd").click(function() {
             $("#dlgAlta").modal("toggle");
             limpiarFormulario();

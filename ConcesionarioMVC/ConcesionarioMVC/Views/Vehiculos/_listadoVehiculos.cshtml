@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ConcesionarioMVC.Models.Vehiculos>
 
-<h2>Listado Vehiculos</h2>
+<h1>Listado Vehiculos</h1>
 
 
 @{
@@ -15,8 +15,8 @@
     }
 
     <div class="col-md-4">
-        <h2>@item.matricula</h2>
-        <h3>@item.marca @item.modelo</h3>
+        <h3>@item.matricula</h3>
+        <p>@item.marca @item.modelo</p>
         <p>@item.coste</p>
     </div>
 

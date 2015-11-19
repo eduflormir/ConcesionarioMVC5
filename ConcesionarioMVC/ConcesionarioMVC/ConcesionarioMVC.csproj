@@ -131,13 +131,13 @@
     <Content Include="Web.config" />
     <Content Include="Views\Tipos\Index.cshtml" />
     <Content Include="Views\Shared\_listadoTipos.cshtml" />
-    <Content Include="Views\Tipos\Create.cshtml" />
     <Content Include="Views\Tipos\ListadoVehiculos.cshtml" />
-    <Content Include="Views\Shared\_listadoVehiculos.cshtml" />
+    <Content Include="Views\Vehiculos\_listadoVehiculos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\TiposController.cs" />
+    <Compile Include="Controllers\VehiculosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -179,6 +179,8 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Tipos\Alta.cshtml" />
+    <Content Include="Views\Vehiculos\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

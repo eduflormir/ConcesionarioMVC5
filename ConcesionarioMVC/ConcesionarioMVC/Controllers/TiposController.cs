@@ -11,47 +11,31 @@ namespace ConcesionarioMVC.Controllers
     public class TiposController : Controller
     {
         Concesionario25Entities db = new Concesionario25Entities();
-
-
-
-        public ActionResult Buscar(String matricula, String marca, int idTipo)
-        {
-            var data = db.Vehiculos.Where(o => o.matricula == matricula || o.marca == marca || o.idTipo==idTipo).OrderBy(o => o.marca);
-            
-            return PartialView("_listadoVehiculos", data);
-        }
-
-        public ActionResult ListadoVehiculos(int? id)
-        {
-            ViewBag.Tipos = db.Tipos.ToList();
-            if (id != null)
-            {
-                var data = db.Vehiculos.Where(o => o.idTipo == id);
-                return View(data);
-            }
-            // nameof para obtener el nombre de las acciones
-
-            return RedirectToAction(nameof(Controllers.TiposController.ListadoVehiculos),
-                nameof(Controllers.TiposController).Replace("Controller",""));
-
-
-        }
-
+        
         // GET: Tipos
         public ActionResult Index()
         {
-            var data = db.Tipos.ToList();
-            return View(data);
+            return View(db.Tipos.ToList());
         }
 
+        public ActionResult Alta()
+        {
+            return View(new Tipos());
+        }
 
         [HttpPost]
-        public ActionResult Alta(Vehiculos model)
-        {
+        [ValidateAntiForgeryToken]
 
-            db.Vehiculos.Add(model);
-            db.SaveChanges();
-            return Json(model); // devuelve un objeto Json
+        public ActionResult Alta(Tipos model)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Tipos.Add(model);
+                db.SaveChanges();
+                return RedirectToAction("Index");    
+            }
+
+            return View(model);
         }
 
 

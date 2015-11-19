@@ -15,16 +15,14 @@
     {
         <tr>
             <td>
-                @Html.ActionLink(item.nombre, "ListadoVehiculos", new { id = item.idTipo })
-                
+                @Html.ActionLink(item.nombre, "Vehiculos/ListadoVehiculos", new {id = item.idTipo})
+
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.descripcion)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.idTipo }) |
-                @Html.ActionLink("Details", "Details", new { id = item.idTipo }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.idTipo })
+                
             </td>
         </tr>
     }

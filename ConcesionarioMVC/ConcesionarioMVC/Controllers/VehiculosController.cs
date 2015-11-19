@@ -18,7 +18,7 @@ namespace ConcesionarioMVC.Controllers
         {
             ViewBag.idTipo = id;
             var data = db.Vehiculos.Where(o => o.idTipo == id);
-            return View(data);
+            return View(data.ToList());
         }
 
         public ActionResult Buscar(int idTipo, int campo, String contenido)

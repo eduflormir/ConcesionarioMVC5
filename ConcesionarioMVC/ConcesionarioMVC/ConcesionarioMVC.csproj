@@ -130,8 +130,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Web.config" />
     <Content Include="Views\Tipos\Index.cshtml" />
-    <Content Include="Views\Shared\_listadoTipos.cshtml" />
-    <Content Include="Views\Tipos\ListadoVehiculos.cshtml" />
+    <Content Include="Views\Tipos\_listadoTipos.cshtml" />
     <Content Include="Views\Vehiculos\_listadoVehiculos.cshtml" />
   </ItemGroup>
   <ItemGroup>

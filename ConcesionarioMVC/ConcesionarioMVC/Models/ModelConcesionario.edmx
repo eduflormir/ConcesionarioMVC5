@@ -4,7 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Concesionario25Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Concesionario25Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="50" Nullable="false" />
+        </EntityType>
         <EntityType Name="Tipos">
           <Key>
             <PropertyRef Name="idTipo" />
@@ -12,6 +19,19 @@
           <Property Name="idTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="nchar" MaxLength="250" Nullable="false" />
           <Property Name="descripcion" Type="nchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="login" Type="nchar" MaxLength="500" Nullable="false" />
+          <Property Name="password" Type="nchar" MaxLength="500" Nullable="false" />
+          <Property Name="nombre" Type="nchar" MaxLength="500" />
+          <Property Name="imagen" Type="nchar" MaxLength="500" />
+          <Property Name="apellidos" Type="nchar" MaxLength="500" />
+          <Property Name="idRol" Type="int" Nullable="false" />
+          <Property Name="email" Type="nchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="Vehiculos">
           <Key>
@@ -23,6 +43,18 @@
           <Property Name="coste" Type="decimal" Precision="18" Scale="0" />
           <Property Name="idTipo" Type="int" />
         </EntityType>
+        <Association Name="FK_Usuario_Rol">
+          <End Role="Rol" Type="Self.Rol" Multiplicity="1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Vehiculos_Tipos">
           <End Role="Tipos" Type="Self.Tipos" Multiplicity="0..1" />
           <End Role="Vehiculos" Type="Self.Vehiculos" Multiplicity="*" />
@@ -36,15 +68,20 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="Concesionario25ModelStoreContainer">
+          <EntitySet Name="Rol" EntityType="Self.Rol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tipos" EntityType="Self.Tipos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vehiculos" EntityType="Self.Vehiculos" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Usuario_Rol" Association="Self.FK_Usuario_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
           <AssociationSet Name="FK_Vehiculos_Tipos" Association="Self.FK_Vehiculos_Tipos">
             <End Role="Tipos" EntitySet="Tipos" />
             <End Role="Vehiculos" EntitySet="Vehiculos" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Concesionario25Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -87,7 +124,47 @@
             <End Role="Tipos" EntitySet="Tipos" />
             <End Role="Vehiculos" EntitySet="Vehiculos" />
           </AssociationSet>
+          <EntitySet Name="Rol" EntityType="Concesionario25Model.Rol" />
+          <EntitySet Name="Usuario" EntityType="Concesionario25Model.Usuario" />
+          <AssociationSet Name="FK_Usuario_Rol" Association="Concesionario25Model.FK_Usuario_Rol">
+            <End Role="Rol" EntitySet="Rol" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Rol">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Usuario" Relationship="Concesionario25Model.FK_Usuario_Rol" FromRole="Rol" ToRole="Usuario" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="login" Type="String" Nullable="false" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="password" Type="String" Nullable="false" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="nombre" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="imagen" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="apellidos" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="idRol" Type="Int32" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Rol" Relationship="Concesionario25Model.FK_Usuario_Rol" FromRole="Usuario" ToRole="Rol" />
+        </EntityType>
+        <Association Name="FK_Usuario_Rol">
+          <End Type="Concesionario25Model.Rol" Role="Rol" Multiplicity="1" />
+          <End Type="Concesionario25Model.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rol">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -111,6 +188,28 @@
                 <ScalarProperty Name="modelo" ColumnName="modelo" />
                 <ScalarProperty Name="coste" ColumnName="coste" />
                 <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rol">
+            <EntityTypeMapping TypeName="Concesionario25Model.Rol">
+              <MappingFragment StoreEntitySet="Rol">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="Concesionario25Model.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="idRol" ColumnName="idRol" />
+                <ScalarProperty Name="apellidos" ColumnName="apellidos" />
+                <ScalarProperty Name="imagen" ColumnName="imagen" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

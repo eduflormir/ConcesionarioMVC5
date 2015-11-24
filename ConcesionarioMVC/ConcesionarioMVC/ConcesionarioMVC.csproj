@@ -135,6 +135,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\TiposController.cs" />
     <Compile Include="Controllers\VehiculosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -155,15 +156,28 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelConcesionario.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Rol.cs">
+      <DependentUpon>ModelConcesionario.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Tipos.cs">
       <DependentUpon>ModelConcesionario.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TiposPartial.cs" />
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>ModelConcesionario.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuarioPartial.cs" />
     <Compile Include="Models\Vehiculos.cs">
       <DependentUpon>ModelConcesionario.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VehiculosPartial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Seguridad\IdentityPersonalizado.cs" />
+    <Compile Include="Seguridad\PrincipalPersonalizado.cs" />
+    <Compile Include="Seguridad\ProveedorAutenticacion.cs" />
+    <Compile Include="Seguridad\ProveedorRol.cs" />
+    <Compile Include="Seguridad\UsuarioMembership.cs" />
+    <Compile Include="Utilidades\SeguridadUtilidades.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -180,6 +194,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Tipos\Alta.cshtml" />
     <Content Include="Views\Vehiculos\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

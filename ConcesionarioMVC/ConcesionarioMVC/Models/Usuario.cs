@@ -12,15 +12,9 @@ namespace ConcesionarioMVC.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Tipos
+    public partial class Usuario
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Tipos()
-        {
-            this.Vehiculos = new HashSet<Vehiculos>();
-        }
-        
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Vehiculos> Vehiculos { get; set; }
+        public int id { get; set; }
+        public virtual Rol Rol { get; set; }
     }
 }

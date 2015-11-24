@@ -8,6 +8,9 @@
         <EntityTypeShape EntityType="Concesionario25Model.Tipos" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="Concesionario25Model.Vehiculos" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
         <AssociationConnector Association="Concesionario25Model.FK_Vehiculos_Tipos" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="Concesionario25Model.Rol" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="Concesionario25Model.Usuario" Width="1.5" PointX="3" PointY="5" />
+        <AssociationConnector Association="Concesionario25Model.FK_Usuario_Rol" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

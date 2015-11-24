@@ -7,6 +7,7 @@ using ConcesionarioMVC.Models;
 
 namespace ConcesionarioMVC.Controllers
 {
+    [Authorize]
     public class VehiculosController : Controller
     {
 

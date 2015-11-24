@@ -8,6 +8,7 @@ using ConcesionarioMVC.Models;
 
 namespace ConcesionarioMVC.Controllers
 {
+    [Authorize]
     public class TiposController : Controller
     {
         Concesionario25Entities db = new Concesionario25Entities();

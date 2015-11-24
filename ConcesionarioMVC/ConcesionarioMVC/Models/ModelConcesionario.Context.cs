@@ -27,5 +27,7 @@ namespace ConcesionarioMVC.Models
     
         public virtual DbSet<Tipos> Tipos { get; set; }
         public virtual DbSet<Vehiculos> Vehiculos { get; set; }
+        public virtual DbSet<Rol> Rol { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }

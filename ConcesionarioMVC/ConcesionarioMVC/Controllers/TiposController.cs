@@ -16,6 +16,7 @@ namespace ConcesionarioMVC.Controllers
         // GET: Tipos
         public ActionResult Index()
         {
+            
             return View(db.Tipos.ToList());
         }
 

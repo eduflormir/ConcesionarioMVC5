@@ -18,12 +18,12 @@ namespace ConcesionarioMVC.Seguridad
         public override bool IsUserInRole(string username, string roleName)
         {
             // cifrar el login
-            var clave = ConfigurationManager.AppSettings["ClaveCifrado"];
-            var cif = SeguridadUtilidades.Cifrar(username, clave);
+            //var clave = ConfigurationManager.AppSettings["ClaveCifrado"];
+            //var cif = SeguridadUtilidades.Cifrar(username, clave);
 
             using (var db = new Concesionario25Entities())
             {
-                var us = db.Usuario.First(o => o.login == cif);
+                var us = db.Usuario.First(o => o.login == username);
                 try
                 {
                     return us.Rol.nombre == roleName;
@@ -38,8 +38,8 @@ namespace ConcesionarioMVC.Seguridad
         public override string[] GetRolesForUser(string username)
         {
             // cifrar el login
-            var clave = ConfigurationManager.AppSettings["ClaveCifrado"];
-            var cif = SeguridadUtilidades.Cifrar(username, clave);
+            //var clave = ConfigurationManager.AppSettings["ClaveCifrado"];
+            //var cif = SeguridadUtilidades.Cifrar(username, clave);
 
             using (var db = new Concesionario25Entities())
             {

@@ -20,11 +20,11 @@ namespace ConcesionarioMVC.Controllers
         public ActionResult Index(Usuario model)
         {
             // var clave = ConfigurationManager.AppSettings["ClaveCifrado"]; // recupero clave cifrado de web config
-            if (Membership.ValidateUser(model.login, model.password))
+            if (Membership.ValidateUser(model.login, model.password)) // ESTA DEFINIDO EN EL WEB CONFIG
             {
                 //var l = SeguridadUtilidades.DesCifrar(Convert.FromBase64String(model.login), clave);
                 FormsAuthentication.RedirectFromLoginPage(model.login, false);
-                return null;
+                RedirectToAction("Index", "Tipos");
             }
             return View(model);
         }
@@ -32,7 +32,7 @@ namespace ConcesionarioMVC.Controllers
         public ActionResult Logoff()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "Tipos"); // Si salgo, hago redirect hacia /Tipos/Index
         }
     }
 }

@@ -11,7 +11,7 @@
         <EntityTypeShape EntityType="Concesionario25Model.Rol" Width="1.5" PointX="0.75" PointY="5.5" />
         <EntityTypeShape EntityType="Concesionario25Model.Usuario" Width="1.5" PointX="3" PointY="5" />
         <AssociationConnector Association="Concesionario25Model.FK_Usuario_Rol" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

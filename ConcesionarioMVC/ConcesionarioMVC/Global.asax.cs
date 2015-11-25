@@ -19,10 +19,12 @@ namespace ConcesionarioMVC
         // EventArgs: los argumentos que se pasan de ese evento
         protected void Application_PostAuthenticateRequest(Object sender, EventArgs e)
         {
+            // es recomendable hacerlo para recuperar el perfil
+            // para este caso cada vez que realiza una petición pasa por aqui
             if (Request.IsAuthenticated)
             {
-                var identity = new IdentityPersonalizado(HttpContext.Current.User.Identity);
-                var principal = new PrincipalPersonalizado(identity);
+                var identity = new IdentityPersonalizado(HttpContext.Current.User.Identity); // recuperame el identity personalziado
+                var principal = new PrincipalPersonalizado(identity); // asignamelo al principal personalizado
                 HttpContext.Current.User = principal;
             }
         }

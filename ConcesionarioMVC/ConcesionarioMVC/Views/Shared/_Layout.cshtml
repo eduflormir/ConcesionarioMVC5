@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using System
+@using ConcesionarioMVC.Seguridad
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -18,7 +20,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            @Html.ActionLink("Application name", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+            @Html.ActionLink("Application name", "Index", "Tipos", new {area = ""}, new {@class = "navbar-brand"})
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -28,7 +30,19 @@
     </div>
 </div>
 
-<b><h3 align="center" style="color: red;">@User.Identity.Name</h3></b>
+    @if (User.Identity.IsAuthenticated)
+    {
+        var u = User as PrincipalPersonalizado;
+        <b>
+            <h3 align="center" style="color: red;">
+                @u.MiIdentidadPersonalizado.nombre
+                @u.MiIdentidadPersonalizado.apellidos
+            </h3>
+        </b>
+
+    }
+
+
 
 <div class="container body-content">
         @RenderBody()

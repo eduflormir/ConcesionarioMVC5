@@ -26,7 +26,6 @@ namespace ConcesionarioMVC.Seguridad
         public string login { get; set; }
         public string password { get; set; }
         public string nombre { get; set; }
-        public string imagen { get; set; }
         public string apellidos { get; set; }
         public String Rol { get; set; }
         public IIdentity Identity { get; set; }
@@ -40,7 +39,6 @@ namespace ConcesionarioMVC.Seguridad
             apellidos = us.apellidos;
             login = us.login;
             id = us.id;
-            imagen = us.imagen;
             Rol = us.Rol;
             Email = Email;
 

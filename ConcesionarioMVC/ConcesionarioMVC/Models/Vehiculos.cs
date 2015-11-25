@@ -14,6 +14,12 @@ namespace ConcesionarioMVC.Models
     
     public partial class Vehiculos
     {
+        //public string matricula { get; set; }
+        //public string marca { get; set; }
+        //public string modelo { get; set; }
+        //public Nullable<decimal> coste { get; set; }
+        //public Nullable<int> idTipo { get; set; }
+    
         public virtual Tipos Tipos { get; set; }
     }
 }
